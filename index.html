@@ -1,86 +1,196 @@
-# Create additional HTML pages for the FetureProTech IT support website
+from pathlib import Path
+from zipfile import ZipFile
 
-# Define the common header and footer
-header = """
-<!DOCTYPE html>
+# HTML content for the interactive index.html file
+html_code = """<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>FetureProTech - IT Support</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header, footer { background-color: #003366; color: white; padding: 1em; text-align: center; }
-        nav a { margin: 0 15px; color: white; text-decoration: none; }
-        section { padding: 2em; }
-        h1 { color: #003366; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FetureProTech - IT Support</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: #0a3d62;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      background: #1e90ff;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+    }
+    .hero button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: #fff;
+      color: #1e90ff;
+      border: none;
+      cursor: pointer;
+    }
+    .section {
+      padding: 3rem 2rem;
+    }
+    .services, .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .service, .testimonial {
+      background: #f1f1f1;
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 280px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .contact-form {
+      max-width: 500px;
+      margin: auto;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .contact-form button {
+      padding: 0.75rem 1.5rem;
+      background: #0a3d62;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    footer {
+      background: #0a3d62;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    @media (max-width: 600px) {
+      .services, .testimonials {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
-<header>
-    <h1>FetureProTech</h1>
-    <nav>
-        <a href="fetureprotech_homepage.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-</header>
-"""
 
-footer = """
+<header>
+  <div><strong>FetureProTech</strong></div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Reliable IT Support for Your Business</h1>
+  <p>24/7 support, secure solutions, and expert service</p>
+  <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Support</button>
+</section>
+
+<section id="services" class="section">
+  <h2 style="text-align:center;">Our Services</h2>
+  <div class="services">
+    <div class="service">
+      <h3>Remote IT Support</h3>
+      <p>Quick and efficient remote troubleshooting and assistance.</p>
+    </div>
+    <div class="service">
+      <h3>Network Setup</h3>
+      <p>Secure and scalable network infrastructure for your office.</p>
+    </div>
+    <div class="service">
+      <h3>Cybersecurity</h3>
+      <p>Protect your data with our advanced security solutions.</p>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="section">
+  <h2 style="text-align:center;">What Our Clients Say</h2>
+  <div class="testimonials">
+    <div class="testimonial">
+      <p>"FetureProTech resolved our IT issues in no time. Highly recommended!"</p>
+      <strong>- Alex, TechCorp</strong>
+    </div>
+    <div class="testimonial">
+      <p>"Professional and reliable support team. Great experience!"</p>
+      <strong>- Priya, FinServe</strong>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <h2 style="text-align:center;">Contact Us</h2>
+  <form class="contact-form" onsubmit="return validateForm()">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Your Email" required />
+    <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
 <footer>
-    <p>&copy; 2025 FetureProTech. All rights reserved.</p>
+  <p>© 2025 FetureProTech | Follow us on 
+    <a href="#" style="color:#fff;">LinkedIn</a> | 
+    <a href="#" style="color:#fff;">Twitter</a>
+  </p>
 </footer>
+
+<script>
+  function validateForm() {
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const message = document.getElementById("message");
+    if (!name.value || !email.value || !message.value) {
+      alert("Please fill in all fields.");
+      return false;
+    }
+    alert("Message sent successfully!");
+    return true;
+  }
+</script>
+
 </body>
 </html>
 """
 
-# Define content for each page
-about_content = """
-<section>
-    <h1>About Us</h1>
-    <p>FetureProTech is a leading IT support company dedicated to providing reliable and innovative technology solutions for businesses of all sizes. Our mission is to empower organizations through expert IT services, ensuring seamless operations and enhanced productivity.</p>
-    <p>Our team of certified professionals brings years of experience in network management, cybersecurity, cloud solutions, and technical support.</p>
-</section>
-"""
-
-services_content = """
-<section>
-    <h1>Our Services</h1>
-    <ul>
-        <li><strong>Remote IT Support:</strong> Fast and efficient remote troubleshooting and assistance.</li>
-        <li><strong>On-Site Support:</strong> Professional technicians available for on-location service.</li>
-        <li><strong>Network Setup & Maintenance:</strong> Secure and scalable network infrastructure.</li>
-        <li><strong>Cybersecurity Solutions:</strong> Protection against threats with advanced security tools.</li>
-        <li><strong>Cloud Services:</strong> Migration, management, and optimization of cloud environments.</li>
-        <li><strong>Hardware & Software Support:</strong> Installation, configuration, and maintenance.</li>
-    </ul>
-</section>
-"""
-
-contact_content = """
-<section>
-    <h1>Contact Us</h1>
-    <p>We'd love to hear from you! Reach out to us using the form below or through our contact details.</p>
-    <form>
-        <label>Name:<br><input type="text" name="name" required></label><br><br>
-        <label>Email:<br><input type="email" name="email" required></label><br><br>
-        <label>Message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
-        <button type="submit">Send Message</button>
-    </form>
-    <p>Email: support@fetureprotech.com<br>Phone: +1-800-123-4567</p>
-</section>
-"""
-
-# Write each page to an HTML file
-with open("about.html", "w") as f:
-    f.write(header + about_content + footer)
-
-with open("services.html", "w") as f:
-    f.write(header + services_content + footer)
-
-with open("contact.html", "w") as f:
-    f.write(header + contact_content + footer)
-
-print("Additional pages (about.html, services.html, contact.html) have been created.")
+# Save the HTML content to index.html
+index_file = Path("index.html")
+index_file.write_text(html_code, encoding="utf-8")
 
