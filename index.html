@@ -1,5 +1,4 @@
-<img src="logo3.png" alt="Company Logo" width="1000"><!DOCTYPE html>
-<img src="logo1.png" alt="Company Logo" width="500"><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -26,66 +25,78 @@
 </head>
 <body>
 
-<header>
-  <div><strong>FetureProTech</strong></div>
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+  <!-- Logo -->
+  <img src="logo3.png" alt="Company Logo" width="1000" />
 
+  <header>
+    <div><strong>FetureProTech</strong></div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<section class="hero">
-  <h1>Reliable IT Support for Your Business</h1>
-  <p>Expert solutions in networking, cybersecurity, and cloud services.</p>
-  <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Support</button>
-</section>
+  <section class="hero">
+    <h1>Reliable IT Support for Your Business</h1>
+    <p>Expert solutions in networking, cybersecurity, and cloud services.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Support</button>
+  </section>
 
-<section class="services" id="services">
-  <h10>Our Services</h10>
-  <div class="services-grid">
-    <div class="service-item"><h3>Remote IT Support</h3><p>Addressing issues with desktops,
-      laptops, and workstations,
-      including performance optimization and software malfunction.</p></div>
-    <div class="service-item"><h3>Call Support</h3><p>Troubleshooting and resolving issues Over the telephone Call.</p></div>
-    <div class="service-item"><h3>Cybersecurity</h3><p>Protect your business with advanced threat detection and response.</p></div>
-      
-    <div class="service-item"><h3>Cloud Solutions</h3><p>Scalable cloud infrastructure and migration services.</p></div>
-</section>
+  <section class="services" id="services">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <div class="service-item">
+        <h3>Remote IT Support</h3>
+        <p>Addressing issues with desktops, laptops, and workstations, including performance optimization and software malfunction.</p>
+      </div>
+      <div class="service-item">
+        <h3>Call Support</h3>
+        <p>Troubleshooting and resolving issues over the telephone call.</p>
+      </div>
+      <div class="service-item">
+        <h3>Cybersecurity</h3>
+        <p>Protect your business with advanced threat detection and response.</p>
+      </div>
+      <div class="service-item">
+        <h3>Cloud Solutions</h3>
+        <p>Scalable cloud infrastructure and migration services.</p>
+      </div>
+    </div>
+  </section>
 
-<section class="testimonials" id="testimonials">
-  <h2>What Our Clients Say</h2>
-  <p style="text-align:center;">"FetureProTech resolved our IT issues quickly and professionally!" – A. Client</p>
-</section>
+  <section class="testimonials" id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <p style="text-align:center;">"FetureProTech resolved our IT issues quickly and professionally!" – A. Client</p>
+  </section>
 
-<section class="contact" id="contact">
-  <h2>Contact Us</h2>
-  <form onsubmit="return validateForm()">
-    <input type="text" id="name" placeholder="Your Name" required />
-    <input type="email" id="email" placeholder="Your Email" required />
-    <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="return validateForm()">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-<footer>
-  <p>&copy; 2025 FetureProTech. All rights reserved.Email:Chauhankrishna1996@gmail.com</p>
-</footer>
+  <footer>
+    <p>&copy; 2025 FetureProTech. All rights reserved. Email: chauhankrishna1996@gmail.com</p>
+  </footer>
 
-<script>
-function validateForm() {
-  const name = document.getElementById('name');
-  const email = document.getElementById('email');
-  const message = document.getElementById('message');
-  if (!name.value || !email.value || !message.value) {
-    alert('Please fill in all fields.');
-    return false;
-  }
-  alert('Message sent successfully!');
-  return false; // Prevent actual submission for demo
-}
-</script>
+  <script>
+    function validateForm() {
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const message = document.getElementById('message');
+      if (!name.value || !email.value || !message.value) {
+        alert('Please fill in all fields.');
+        return false;
+      }
+      alert('Message sent successfully!');
+      return false; // Prevent actual submission for demo
+    }
+  </script>
 
 </body>
 </html>
