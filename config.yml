@@ -1,7 +1,0 @@
-title: FetureProTech
-description: IT Support Website
-baseurl: ""
-url: "https://yourusername.github.io/fetureprotech-site"
-theme: minima
-plugins:
-  - jekyll-feed
